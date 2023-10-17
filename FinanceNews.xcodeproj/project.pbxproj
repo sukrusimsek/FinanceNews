@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D3F99DE2ADDB32C00F9BA3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F99DD2ADDB32C00F9BA3E /* AppDelegate.swift */; };
 		8D3F99E02ADDB32C00F9BA3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F99DF2ADDB32C00F9BA3E /* SceneDelegate.swift */; };
-		8D3F99E22ADDB32C00F9BA3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F99E12ADDB32C00F9BA3E /* ViewController.swift */; };
+		8D3F99E22ADDB32C00F9BA3E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F99E12ADDB32C00F9BA3E /* HomeViewController.swift */; };
 		8D3F99E52ADDB32C00F9BA3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F99E32ADDB32C00F9BA3E /* Main.storyboard */; };
 		8D3F99E72ADDB32D00F9BA3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F99E62ADDB32D00F9BA3E /* Assets.xcassets */; };
 		8D3F99EA2ADDB32D00F9BA3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F99E82ADDB32D00F9BA3E /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		8D3F99DA2ADDB32C00F9BA3E /* FinanceNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3F99DD2ADDB32C00F9BA3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D3F99DF2ADDB32C00F9BA3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8D3F99E12ADDB32C00F9BA3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8D3F99E12ADDB32C00F9BA3E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8D3F99E42ADDB32C00F9BA3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D3F99E62ADDB32D00F9BA3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D3F99E92ADDB32D00F9BA3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,15 +56,23 @@
 		8D3F99DC2ADDB32C00F9BA3E /* FinanceNews */ = {
 			isa = PBXGroup;
 			children = (
+				8D3F99F22ADF11D800F9BA3E /* Controller */,
 				8D3F99DD2ADDB32C00F9BA3E /* AppDelegate.swift */,
 				8D3F99DF2ADDB32C00F9BA3E /* SceneDelegate.swift */,
-				8D3F99E12ADDB32C00F9BA3E /* ViewController.swift */,
 				8D3F99E32ADDB32C00F9BA3E /* Main.storyboard */,
 				8D3F99E62ADDB32D00F9BA3E /* Assets.xcassets */,
 				8D3F99E82ADDB32D00F9BA3E /* LaunchScreen.storyboard */,
 				8D3F99EB2ADDB32D00F9BA3E /* Info.plist */,
 			);
 			path = FinanceNews;
+			sourceTree = "<group>";
+		};
+		8D3F99F22ADF11D800F9BA3E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D3F99E12ADDB32C00F9BA3E /* HomeViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D3F99E22ADDB32C00F9BA3E /* ViewController.swift in Sources */,
+				8D3F99E22ADDB32C00F9BA3E /* HomeViewController.swift in Sources */,
 				8D3F99DE2ADDB32C00F9BA3E /* AppDelegate.swift in Sources */,
 				8D3F99E02ADDB32C00F9BA3E /* SceneDelegate.swift in Sources */,
 			);
