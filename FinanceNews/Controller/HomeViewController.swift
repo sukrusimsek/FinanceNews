@@ -11,16 +11,17 @@ class HomeViewController: UIViewController {
     //MARK: - Properties
     let cellId : String = "cellId"
     var collectionView: UICollectionView!
-    let breakingNewsImage = ["1","2","3"]
+    let breakingNewsImage = ["1","2","3","4","5","6","7","8"]
     
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = self
-        collectionView.delegate = self
         layout()
         style()
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
         collectionView.register(CustomCellForColView.self, forCellWithReuseIdentifier: cellId)
     }
 
@@ -33,9 +34,10 @@ extension HomeViewController {
     }
     private func layout() {
         let layoutForColView = UICollectionViewFlowLayout()
+        layoutForColView.scrollDirection = .horizontal
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutForColView)
-        view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
         
         
         NSLayoutConstraint.activate([
@@ -43,7 +45,7 @@ extension HomeViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 30),
+            collectionView.heightAnchor.constraint(equalToConstant: 120),
             
         ])
     }
@@ -70,7 +72,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width / 2, height: collectionView.frame.height / 2)
+        return CGSize(width: collectionView.frame.width/5, height: collectionView.frame.height / 1.5)
     }
 }
 
@@ -79,7 +81,7 @@ class CustomCellForColView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(breakingImageView)
-        breakingImageView.layer.cornerRadius = 2
+        breakingImageView.layer.cornerRadius = 10
         breakingImageView.layer.masksToBounds = true
         
         breakingImageView.translatesAutoresizingMaskIntoConstraints = false
