@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "marqueelabel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cbpowell/MarqueeLabel.git",
+      "state" : {
+        "revision" : "e68799fc4a58540a4f38f8eff539d7c46dd6aaaf",
+        "version" : "4.3.2"
+      }
+    }
+  ],
+  "version" : 2
+}

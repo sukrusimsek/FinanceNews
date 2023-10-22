@@ -59,6 +59,7 @@
 				8D3F99F22ADF11D800F9BA3E /* Controller */,
 				8D3F99DD2ADDB32C00F9BA3E /* AppDelegate.swift */,
 				8D3F99DF2ADDB32C00F9BA3E /* SceneDelegate.swift */,
+				8D3F99E12ADDB32C00F9BA3E /* HomeViewController.swift */,
 				8D3F99E32ADDB32C00F9BA3E /* Main.storyboard */,
 				8D3F99E62ADDB32D00F9BA3E /* Assets.xcassets */,
 				8D3F99E82ADDB32D00F9BA3E /* LaunchScreen.storyboard */,
@@ -70,7 +71,6 @@
 		8D3F99F22ADF11D800F9BA3E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8D3F99E12ADDB32C00F9BA3E /* HomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -91,6 +91,8 @@
 			dependencies = (
 			);
 			name = FinanceNews;
+			packageProductDependencies = (
+			);
 			productName = FinanceNews;
 			productReference = 8D3F99DA2ADDB32C00F9BA3E /* FinanceNews.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +121,9 @@
 				Base,
 			);
 			mainGroup = 8D3F99D12ADDB32B00F9BA3E;
+			packageReferences = (
+				8D650A662AE1AB3B00F08F15 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
+			);
 			productRefGroup = 8D3F99DB2ADDB32C00F9BA3E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -366,6 +371,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D650A662AE1AB3B00F08F15 /* XCRemoteSwiftPackageReference "MarqueeLabel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cbpowell/MarqueeLabel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 8D3F99D22ADDB32B00F9BA3E /* Project object */;
 }
