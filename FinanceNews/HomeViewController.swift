@@ -15,18 +15,20 @@ class HomeViewController: UIViewController {
     fileprivate var collectionViewForBreaking: UICollectionView!
     let breakingNewsImage = ["1","2","3","4","5","6","7","8","9"]
     
-    fileprivate var collectionViewForPrice: UICollectionView!
-    fileprivate var timer: Timer?
-    fileprivate var direction:MarqueeDirection = .left
     let customTexts = ["Dolar: 28.40","Euro: 29.90","Sterlin: 34.70","Gram Altın: 1760","Bist: 7769,0","Bitcoin: $28.465","Ons Altın: $1970"]
     
     fileprivate var collectionViewForHomeNews: UICollectionView!
     let imageForTakeApi = ["a","b","c","d","e","f","g","h","k","l","m","n"]
     let newsTexts = ["Hazine, 2 yıllık tahville 1,82 milyar TL borçlandı", "Şimşek’e göre Gabar’daki petrol cari açığı kalıcı olarak azaltacak", "10 yıl vadeli ABD Hazine kağıdının getirisi 16 yıl sonra yüzde 5'i geçti", "Hafize Gaye Erkan, Powell ile bir araya geldi", "Hamasın Finansal Gücü Sadece İran Mı?", "Portakal Suyu Fiyatı neden 3'e katlandı?", "Bitcoin tekrardan 30.000$ üstüne çıktı.", "Borsa İstanbul günü %3.19 yükseliş ile kapattı.", "TABGD Halka arzına rekor talep: 4.949.462 ", "30 Ekimde Ford Otosan 28.2720 TL Temettü dağıtacak.", "Michael Saylor'ın milyar dolarlık Bitcoin yatırımları kâr etmeye başladı", "ECB'nin ilk faiz indiriminin 2024 Mart'ta gelmesi bekleniyor"]
+    
+    
     enum MarqueeDirection : CGFloat {
             case left = 1
             case right = -1
         }
+    fileprivate var collectionViewForPrice: UICollectionView!
+    fileprivate var timer: Timer?
+    fileprivate var direction:MarqueeDirection = .left
 
     
     //MARK: - Lifecycle
@@ -107,12 +109,12 @@ extension HomeViewController {
         
         let layoutForScreen = UICollectionViewFlowLayout()
         layoutForScreen.scrollDirection = .vertical
-        layoutForScreen.minimumLineSpacing = 5
-        layoutForScreen.minimumInteritemSpacing = 5
+        layoutForScreen.minimumLineSpacing = 10
+        //layoutForScreen.minimumInteritemSpacing = 10
         collectionViewForHomeNews = UICollectionView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50), collectionViewLayout: layoutForScreen)
         collectionViewForHomeNews.dataSource = self
         collectionViewForHomeNews.delegate = self
-        collectionViewForHomeNews.backgroundColor = .brown
+        collectionViewForHomeNews.backgroundColor = .white
         collectionViewForHomeNews.register(CustomCellForNewsView.self, forCellWithReuseIdentifier: cellIdForNews)
         collectionViewForHomeNews.translatesAutoresizingMaskIntoConstraints = false
         collectionViewForHomeNews.showsVerticalScrollIndicator = false
@@ -120,9 +122,9 @@ extension HomeViewController {
         
         NSLayoutConstraint.activate([
             collectionViewForHomeNews.topAnchor.constraint(equalTo: collectionViewForPrice.bottomAnchor,constant: 10),
-            collectionViewForHomeNews.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionViewForHomeNews.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionViewForHomeNews.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionViewForHomeNews.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8),
+            collectionViewForHomeNews.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8),
+            collectionViewForHomeNews.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 8),
         ])
     }
 
@@ -159,7 +161,7 @@ extension HomeViewController: UICollectionViewDataSource {
         } else if collectionView == self.collectionViewForHomeNews {
             let cell = collectionViewForHomeNews.dequeueReusableCell(withReuseIdentifier: cellIdForNews, for: indexPath) as! CustomCellForNewsView
             cell.imageForNews.image = UIImage(named: imageForTakeApi[indexPath.row])
-            cell.textForNews.font = .systemFont(ofSize: 7)
+            cell.textForNews.font = .systemFont(ofSize: 9)
             cell.textForNews.text = newsTexts[indexPath.row]
             return cell
         }
@@ -194,7 +196,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         } else if collectionView == collectionViewForPrice {
             return CGSize(width: view.frame.width/4.8, height: 18)
         } else if collectionView == collectionViewForHomeNews {
-            return CGSize(width: collectionViewForHomeNews.frame.width/2, height: (view.frame.height - collectionViewForPrice.frame.height - collectionViewForBreaking.frame.height)/2)
+            return CGSize(width: collectionViewForHomeNews.frame.width/2-5, height: (view.frame.height - collectionViewForPrice.frame.height - collectionViewForBreaking.frame.height)/4)
         }
         
         return CGSize(width: 0, height: 0)
@@ -214,17 +216,18 @@ extension HomeViewController: UICollectionViewDelegate {
     }
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         cancelTimer()
+        
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if scrollView == collectionViewForPrice {
-            if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).x > 0) {
-                direction = .right
-            } else {
-                direction = .left
-            }
-            startTimer()
+        
+        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).x > 0) {
+            direction = .right
+        } else {
+            direction = .left
         }
+        startTimer()
+        
         
     }
 }
@@ -285,20 +288,23 @@ class CustomCellForColView: UICollectionViewCell {
 }
 class CustomCellForNewsView: UICollectionViewCell {
     let imageForNews = UIImageView()
-    let textForNews = UITextView()
+    let textForNews = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         imageForNews.contentMode = .scaleAspectFill
-        textForNews.textColor = .darkGray
-        textForNews.textAlignment = .left
-        //textForNews.numberOfLines = 2
-        imageForNews.layer.cornerRadius = 5
+        textForNews.textColor = .black
+        textForNews.textAlignment = .center
+        textForNews.backgroundColor = .secondarySystemBackground
+        textForNews.layer.cornerRadius = 5
+        textForNews.layer.masksToBounds = true
+        textForNews.numberOfLines = 2
+        imageForNews.layer.cornerRadius = 10
         imageForNews.layer.masksToBounds = true
-        /*imageForNews.layer.shadowColor = UIColor.black.cgColor
+        imageForNews.layer.shadowColor = UIColor.black.cgColor
         imageForNews.layer.shadowOpacity = 0.5
         imageForNews.layer.shadowOffset = CGSize(width: 3, height: 3)
-        imageForNews.layer.shadowRadius = 5*/
+        imageForNews.layer.shadowRadius = 5
         imageForNews.translatesAutoresizingMaskIntoConstraints = false
         textForNews.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageForNews)
@@ -312,7 +318,7 @@ class CustomCellForNewsView: UICollectionViewCell {
             textForNews.topAnchor.constraint(equalTo: imageForNews.bottomAnchor, constant: 3),
             textForNews.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 3),
             textForNews.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -3),
-            textForNews.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textForNews.bottomAnchor.constraint(equalTo: bottomAnchor,constant: 5),
         ])
     }
     
